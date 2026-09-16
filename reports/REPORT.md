@@ -60,11 +60,11 @@ Không có lỗi đảo trái/phải nào bị evaluator tính điểm trừ tro
 
 2. `box_mAP50-95` (0.8041) cao hơn `pose_mAP50-95` (0.6908) khoảng 0.1133. Model tìm người (detection) dễ hơn tìm khớp (pose) — phát hiện một người trong ảnh đơn giản hơn nhiều so với định vị chính xác 17 điểm khớp nhỏ, nhất là khi khớp bị che hoặc ở tư thế phức tạp.
 
-3. *(cần bổ sung sau khi xem thêm ảnh dự đoán của model)*
+3. *Trong ảnh test_02.jpg, model dự đoán thêm một box "person 0.3" ở góc dưới bên trái của ảnh - khu vực chỉ có tảng đá tối, không có người thật. Nhãn gold cho ảnh này chỉ có đúng một người (đứng trên bờ đá, góc phải ảnh). Đây là lỗi thuộc loại GUESS/trượt hẳn - model "nhìn thấy" người ở nơi không có bằng chứng thật, đặt cả khung xương pose vào một vùng nền tối không phải cơ thể người.*
 
-4. *(cần bổ sung sau khi xem thêm ảnh dự đoán của model)*
+4. *test_02.jpg là ảnh có khác biệt rõ nhất giữa nhãn thật và model, do model tạo thêm phát hiện giả (false positive) không tồn tại trong nhãn gold. Ở các khớp trên người thật trong ảnh, model dự đoán khá khớp với nhãn thật (khung xương predicted gần trùng với labels ở các ảnh test_08, test_09, test_10...). Vì nhãn gold là chuẩn tham chiếu đáng tin cậy, nhãn đúng ở đây - model sai khi tạo thêm một phát hiện không có căn cứ.*
 
-5. *(cần bổ sung — hai tập đánh giá train/test khác nhau nên chưa so sánh trực tiếp được)*
+5. *Việc đánh giá eval_vs_gold.json (nhãn của tôi so với gold) chạy trên tập train (20 ảnh tôi tự gán), còn đánh giá model chạy trên tập test (10 ảnh riêng biệt, không phải ảnh tôi gán) - hai tập ảnh này không giao nhau nên không thể xác định "ảnh nào" trùng giữa hai phép đánh giá để so sánh trực tiếp. Nếu muốn so sánh chặt hơn, cần chạy thêm bước đánh giá model trên chính 20 ảnh train mà tôi đã gán, việc này notebook hiện tại chưa thực hiện (chỉ đánh giá model trên test set*
 
 ## 5. Một rule evidence bạn đã dùng
 
